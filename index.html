@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HN DZ - إعلانات الجزائر</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f9;color:#222}
+header{background:#102b46;color:white;padding:20px;text-align:center}
+header h1{margin:0;font-size:32px}
+header p{margin:8px 0 0}
+.search{padding:18px;background:white}
+input,select,button{width:100%;padding:13px;margin:6px 0;border:1px solid #ddd;border-radius:9px;font-size:16px}
+button{background:#087e61;color:white;border:0;font-weight:bold;cursor:pointer}
+h2{padding:0 15px;color:#102b46}
+.categories{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px}
+.cat{background:white;padding:18px 8px;text-align:center;border-radius:12px;font-weight:bold;box-shadow:0 2px 7px #ddd}
+.products{padding:12px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.product{background:white;border-radius:12px;padding:12px;box-shadow:0 2px 7px #ddd}
+.product h3{font-size:16px}
+.price{color:#087e61;font-weight:bold}
+.form{background:white;margin:15px;padding:15px;border-radius:12px}
+footer{background:#102b46;color:white;text-align:center;padding:20px;margin-top:25px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>HN DZ</h1>
+<p>سوق الجزائر للبيع والشراء 🇩🇿</p>
+</header>
+
+<div class="search">
+<input id="search" placeholder="🔍 ابحث عن منتج..." oninput="filterAds()">
+</div>
+
+<h2>الأقسام الرئيسية</h2>
+<div class="categories">
+<div class="cat">🚗 السيارات</div>
+<div class="cat">🏠 العقارات</div>
+<div class="cat">📱 الهواتف</div>
+<div class="cat">💻 الإلكترونيات</div>
+<div class="cat">🛋️ الأثاث</div>
+<div class="cat">👕 الملابس</div>
+</div>
+
+<h2>أحدث الإعلانات</h2>
+<div class="products" id="products">
+<div class="product">
+<h3>هاتف للبيع</h3>
+<p>هاتف بحالة جيدة</p>
+<p class="price">25,000 دج</p>
+</div>
+<div class="product">
+<h3>سيارة للبيع</h3>
+<p>سيارة مستعملة</p>
+<p class="price">150 مليون</p>
+</div>
+</div>
+
+<h2>أضف إعلانك مجاناً</h2>
+<div class="form">
+<input id="name" placeholder="اسم المنتج">
+<input id="price" placeholder="السعر بالدينار">
+<input id="city" placeholder="الولاية">
+<input id="phone" placeholder="رقم الهاتف">
+<button onclick="addAd()">نشر الإعلان</button>
+</div>
+
+<footer>
+<h3>HN DZ 🇩🇿</h3>
+<p>منصة الإعلانات المبوبة الجزائرية</p>
+<p>جميع الحقوق محفوظة 2026</p>
+</footer>
+
+<script>
+function addAd(){
+let name=document.getElementById('name').value;
+let price=document.getElementById('price').value;
+let city=document.getElementById('city').value;
+if(!name||!price||!city){
+alert('يرجى ملء اسم المنتج والسعر والولاية');
+return;
+}
+let card=document.createElement('div');
+card.className='product';
+let title=document.createElement('h3');
+title.textContent=name;
+let location=document.createElement('p');
+location.textContent=city;
+let amount=document.createElement('p');
+amount.className='price';
+amount.textContent=price+' دج';
+card.append(title,location,amount);
+document.getElementById('products').prepend(card);
+alert('تمت إضافة الإعلان إلى المعاينة');
+}
+function filterAds(){
+let value=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('.product').forEach(card=>{
+card.style.display=card.textContent.toLowerCase().includes(value)?'':'none';
+});
+}
+</script>
+</body>
+</html>
