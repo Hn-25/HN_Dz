@@ -1,108 +1,67 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HN DZ - إعلانات الجزائر</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#087e61">
+<title>HN DZ | سوق الجزائر</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f6f9;color:#222}
-header{background:#102b46;color:white;padding:20px;text-align:center}
-header h1{margin:0;font-size:32px}
-header p{margin:8px 0 0}
-.search{padding:18px;background:white}
-input,select,button{width:100%;padding:13px;margin:6px 0;border:1px solid #ddd;border-radius:9px;font-size:16px}
-button{background:#087e61;color:white;border:0;font-weight:bold;cursor:pointer}
-h2{padding:0 15px;color:#102b46}
-.categories{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px}
-.cat{background:white;padding:18px 8px;text-align:center;border-radius:12px;font-weight:bold;box-shadow:0 2px 7px #ddd}
-.products{padding:12px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.product{background:white;border-radius:12px;padding:12px;box-shadow:0 2px 7px #ddd}
-.product h3{font-size:16px}
-.price{color:#087e61;font-weight:bold}
-.form{background:white;margin:15px;padding:15px;border-radius:12px}
-footer{background:#102b46;color:white;text-align:center;padding:20px;margin-top:25px}
-</style>
-</head>
+*{box-sizing:border-box}body{margin:0;background:#f4f7f5;color:#1d2924;font-family:Arial,Tahoma,sans-serif}
+header{background:linear-gradient(120deg,#075b49,#0d9670);color:white;padding:20px 16px 25px}
+.top{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:30px;font-weight:900}.tag{font-size:13px;margin-top:5px}
+.top a{color:#075b49;background:white;text-decoration:none;padding:11px 14px;border-radius:10px;font-weight:bold}
+.hero{max-width:1050px;margin:22px auto 0}.hero h1{font-size:25px;margin:0 0 8px}.hero p{margin:0;color:#e1fff4}
+main{max-width:1050px;margin:auto;padding:16px}.searchbox,.formbox{background:white;padding:14px;border-radius:14px;box-shadow:0 3px 14px #102b4610}
+input,select,textarea,button{font:inherit}input,select,textarea{width:100%;padding:13px;border:1px solid #dce5df;border-radius:9px;background:white;margin:5px 0}
+.searchrow,.formgrid{display:grid;grid-template-columns:2fr 1fr;gap:8px}h2{font-size:20px;color:#123b32;margin:25px 0 12px}
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.cat{border:1px solid #e0e9e3;background:white;border-radius:12px;padding:15px 5px;text-align:center;font-weight:bold;cursor:pointer}.cat.active{border:2px solid #087e61;background:#e9f7f1;color:#087e61}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px}.toolbar small,.meta,.note{color:#68756f}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product{background:white;border:1px solid #e6ece8;border-radius:13px;overflow:hidden}
+.product img{width:100%;height:145px;object-fit:cover;background:#eaf0ec}.productbody{padding:11px}.product h3{font-size:16px;margin:0 0 7px}.price{color:#087e61;font-weight:800;margin:7px 0}.meta,.note{font-size:12px;line-height:1.7}
+.call{display:block;text-align:center;text-decoration:none;background:#087e61;color:white;padding:10px;border-radius:8px;margin-top:10px;font-weight:bold}
+.formbox button{width:100%;border:0;border-radius:10px;padding:14px;background:#087e61;color:white;font-weight:bold;margin-top:8px;cursor:pointer}
+.empty{background:white;padding:25px;text-align:center;border-radius:12px;color:#68756f;grid-column:1/-1}
+footer{margin-top:30px;background:#123b32;color:#e6fff4;text-align:center;padding:24px 12px;font-size:13px}
+@media(min-width:700px){.categories{grid-template-columns:repeat(6,1fr)}.products{grid-template-columns:repeat(4,minmax(0,1fr))}.product img{height:165px}}
+@media(max-width:420px){.searchrow,.formgrid{grid-template-columns:1fr}.logo{font-size:25px}}
+</style></head>
 <body>
-
-<header>
-<h1>HN DZ</h1>
-<p>سوق الجزائر للبيع والشراء 🇩🇿</p>
-</header>
-
-<div class="search">
-<input id="search" placeholder="🔍 ابحث عن منتج..." oninput="filterAds()">
-</div>
-
-<h2>الأقسام الرئيسية</h2>
-<div class="categories">
-<div class="cat">🚗 السيارات</div>
-<div class="cat">🏠 العقارات</div>
-<div class="cat">📱 الهواتف</div>
-<div class="cat">💻 الإلكترونيات</div>
-<div class="cat">🛋️ الأثاث</div>
-<div class="cat">👕 الملابس</div>
-</div>
-
-<h2>أحدث الإعلانات</h2>
-<div class="products" id="products">
-<div class="product">
-<h3>هاتف للبيع</h3>
-<p>هاتف بحالة جيدة</p>
-<p class="price">25,000 دج</p>
-</div>
-<div class="product">
-<h3>سيارة للبيع</h3>
-<p>سيارة مستعملة</p>
-<p class="price">150 مليون</p>
-</div>
-</div>
-
-<h2>أضف إعلانك مجاناً</h2>
-<div class="form">
-<input id="name" placeholder="اسم المنتج">
-<input id="price" placeholder="السعر بالدينار">
-<input id="city" placeholder="الولاية">
-<input id="phone" placeholder="رقم الهاتف">
-<button onclick="addAd()">نشر الإعلان</button>
-</div>
-
-<footer>
-<h3>HN DZ 🇩🇿</h3>
-<p>منصة الإعلانات المبوبة الجزائرية</p>
-<p>جميع الحقوق محفوظة 2026</p>
-</footer>
-
+<header><div class="top"><div><div class="logo">HN DZ 🇩🇿</div><div class="tag">سوق الجزائر للبيع والشراء</div></div><a href="#add">＋ أضف إعلانك</a></div>
+<div class="hero"><h1>بيع واشري بكل سهولة</h1><p>اكتشف العروض أو انشر إعلانك مجاناً</p></div></header>
+<main>
+<section class="searchbox"><input id="search" placeholder="🔎 ابحث عن سيارة، هاتف، منزل...">
+<div class="searchrow"><select id="wilaya"><option value="">كل الولايات</option><option>بسكرة</option><option>قسنطينة</option><option>الجزائر</option><option>وهران</option><option>سطيف</option><option>باتنة</option><option>عنابة</option><option>تيزي وزو</option><option>البليدة</option><option>الوادي</option><option>ورقلة</option><option>بجاية</option><option>المسيلة</option><option>خنشلة</option><option>ميلة</option><option>تبسة</option><option>الجلفة</option><option>أخرى</option></select>
+<button id="clear" type="button" style="border:0;background:#e8f4ee;color:#087e61;border-radius:9px;padding:10px">مسح البحث</button></div></section>
+<h2>الأقسام الرئيسية</h2><section class="categories" id="categories">
+<button class="cat active" data-cat="">🛍️ الكل</button><button class="cat" data-cat="سيارات">🚗 السيارات</button><button class="cat" data-cat="عقارات">🏠 العقارات</button><button class="cat" data-cat="هواتف">📱 الهواتف</button><button class="cat" data-cat="إلكترونيات">💻 الإلكترونيات</button><button class="cat" data-cat="أثاث">🛋️ الأثاث</button></section>
+<div class="toolbar"><h2>أحدث الإعلانات</h2><small id="count"></small></div><section class="products" id="products"></section>
+<h2 id="add">أضف إعلانك مجاناً</h2><section class="formbox"><form id="adForm">
+<input id="title" required maxlength="70" placeholder="اسم المنتج أو الإعلان">
+<div class="formgrid"><input id="price" required type="number" min="0" placeholder="السعر بالدينار الجزائري"><select id="category" required><option value="">اختر القسم</option><option>سيارات</option><option>عقارات</option><option>هواتف</option><option>إلكترونيات</option><option>أثاث</option><option>ملابس</option><option>أخرى</option></select></div>
+<select id="city" required><option value="">اختر الولاية</option><option>بسكرة</option><option>قسنطينة</option><option>الجزائر</option><option>وهران</option><option>سطيف</option><option>باتنة</option><option>عنابة</option><option>تيزي وزو</option><option>البليدة</option><option>الوادي</option><option>ورقلة</option><option>بجاية</option><option>المسيلة</option><option>خنشلة</option><option>ميلة</option><option>تبسة</option><option>الجلفة</option><option>أخرى</option></select>
+<input id="phone" required type="tel" inputmode="tel" placeholder="رقم هاتفك">
+<textarea id="description" rows="3" maxlength="400" placeholder="وصف الإعلان (اختياري)"></textarea>
+<label class="note">صورة المنتج (اختياري)</label><input id="photo" type="file" accept="image/*">
+<button type="submit">نشر الإعلان</button>
+<p class="note">نسخة تجريبية: الإعلانات تحفظ على نفس الهاتف والمتصفح فقط ولا تظهر للزوار الآخرين بعد. لفتح النشر العام نحتاج لاحقاً إلى قاعدة بيانات.</p>
+</form></section></main>
+<footer><strong>HN DZ 🇩🇿</strong><p>سوق الجزائر للبيع والشراء</p><p>© 2026 HN DZ</p></footer>
 <script>
-function addAd(){
-let name=document.getElementById('name').value;
-let price=document.getElementById('price').value;
-let city=document.getElementById('city').value;
-if(!name||!price||!city){
-alert('يرجى ملء اسم المنتج والسعر والولاية');
-return;
-}
-let card=document.createElement('div');
-card.className='product';
-let title=document.createElement('h3');
-title.textContent=name;
-let location=document.createElement('p');
-location.textContent=city;
-let amount=document.createElement('p');
-amount.className='price';
-amount.textContent=price+' دج';
-card.append(title,location,amount);
-document.getElementById('products').prepend(card);
-alert('تمت إضافة الإعلان إلى المعاينة');
-}
-function filterAds(){
-let value=document.getElementById('search').value.toLowerCase();
-document.querySelectorAll('.product').forEach(card=>{
-card.style.display=card.textContent.toLowerCase().includes(value)?'':'none';
-});
-}
-</script>
-</body>
-</html>
+const key='hndz_ads_v2';let activeCategory='';
+const sample=[{id:'s1',title:'هاتف ذكي بحالة جيدة',price:'25000',city:'بسكرة',category:'هواتف',phone:'',description:'مثال توضيحي',photo:''},{id:'s2',title:'سيارة مستعملة للبيع',price:'1500000',city:'قسنطينة',category:'سيارات',phone:'',description:'مثال توضيحي',photo:''}];
+function getAds(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}}
+function safe(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){const q=document.getElementById('search').value.trim().toLowerCase(),city=document.getElementById('wilaya').value;
+const ads=[...getAds(),...sample].filter(a=>(!activeCategory||a.category===activeCategory)&&(!city||a.city===city)&&(!q||(a.title+' '+a.description+' '+a.category+' '+a.city).toLowerCase().includes(q)));
+document.getElementById('count').textContent=ads.length+' إعلان';const root=document.getElementById('products');root.innerHTML='';
+if(!ads.length){root.innerHTML='<div class="empty">لا توجد إعلانات مطابقة. جرّب بحثاً آخر.</div>';return}
+ads.forEach(a=>{const card=document.createElement('article');card.className='product';const img=a.photo?'<img src="'+a.photo+'" alt="'+safe(a.title)+'">':'<div style="height:145px;display:grid;place-items:center;background:#eaf3ed;font-size:45px">🛍️</div>';
+const phone=String(a.phone||'').replace(/[^0-9+]/g,'');card.innerHTML=img+'<div class="productbody"><h3>'+safe(a.title)+'</h3><div class="price">'+safe(Number(a.price||0).toLocaleString('en-US'))+' دج</div><div class="meta">📍 '+safe(a.city)+' · '+safe(a.category)+'</div><p class="meta">'+safe(a.description)+'</p>'+(phone?'<a class="call" href="tel:'+safe(phone)+'">اتصل بالبائع</a>':'<div class="meta">إعلان تجريبي</div>')+'</div>';root.appendChild(card)})}
+document.getElementById('adForm').addEventListener('submit',async e=>{e.preventDefault();const file=document.getElementById('photo').files[0];let photo='';
+if(file){if(file.size>900000){alert('اختر صورة أقل من 900 كيلوبايت.');return}photo=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+const ad={id:Date.now().toString(),title:document.getElementById('title').value.trim(),price:document.getElementById('price').value,category:document.getElementById('category').value,city:document.getElementById('city').value,phone:document.getElementById('phone').value.trim(),description:document.getElementById('description').value.trim(),photo};
+const ads=getAds();ads.unshift(ad);try{localStorage.setItem(key,JSON.stringify(ads))}catch(err){alert('مساحة التخزين ممتلئة. جرّب صورة أصغر.');return}e.target.reset();render();document.getElementById('products').scrollIntoView({behavior:'smooth'});alert('تمت إضافة إعلانك على هذا الهاتف بنجاح.')});
+document.getElementById('search').addEventListener('input',render);document.getElementById('wilaya').addEventListener('change',render);
+document.getElementById('clear').addEventListener('click',()=>{document.getElementById('search').value='';document.getElementById('wilaya').value='';activeCategory='';document.querySelectorAll('.cat').forEach(b=>b.classList.toggle('active',!b.dataset.cat));render()});
+document.querySelectorAll('.cat').forEach(b=>b.addEventListener('click',()=>{activeCategory=b.dataset.cat;document.querySelectorAll('.cat').forEach(x=>x.classList.toggle('active',x===b));render()}));render();
+</script></body></html>
